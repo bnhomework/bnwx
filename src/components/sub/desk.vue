@@ -3,7 +3,7 @@
 		<svg :width="width" :height="height" xmlns="http://www.w3.org/2000/svg">
 		<circle :cx="cx" :cy="cy" :r="rdesk2" :fill="fillColor2"/>
 		  <path v-for="item in pList" :d="trackPath" stroke-width="1" :fill="fillColor(item)" stroke="#ffffff"  :transform="trans(item)" :id="'p_'+item"/>
-		<text x="10" y="100" style="fill: #ffffff;" v-for="item in pList" font-size="30">
+		<text x="10" y="100" style="fill: #ffffff;" v-for="item in pList" :font-size="fontSize">
 		    <textPath v-bind:xlink:href="'#p_'+item">
 		        {{item}}
 		    </textPath>
@@ -27,7 +27,8 @@
 			height:{type:Number,default:400},
 			positions:{type:Number,default:12},
 			avaliableColor:{type:String,default:'#0099FF'},
-			disableColor:{type:String,default:'#dddddd'}
+			disableColor:{type:String,default:'#dddddd'},
+			fontSize:{type:Number,default:28}
 		},
 		created(){
 			// this.pList=range(1,this.positions)

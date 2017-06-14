@@ -11,7 +11,7 @@
     <group-title>rows = 2</group-title>
     <grid :rows="2">
       <grid-item :label="'ss'" v-for="(d,i) in shopInfo.desks" :key="i">
-        <!-- <desk :v="d"></desk> -->
+        <desk :v="d" ></desk>
       </grid-item>
     </grid>
   </div>
