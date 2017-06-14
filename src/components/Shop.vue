@@ -8,19 +8,27 @@
         <x-icon type="ios-location-outline" slot="icon" size="20"></x-icon>
       </cell>
     </group>
+    <group-title>rows = 2</group-title>
+    <grid :rows="2">
+      <grid-item :label="'ss'" v-for="(d,i) in shopInfo.desks" :key="i">
+        <!-- <desk :v="d"></desk> -->
+      </grid-item>
+    </grid>
   </div>
 </template>
 
 <script>
 import { Group, Cell,Swiper } from 'vux'
 import utils from '@/mixins/utils'
+import desk from '@/components/sub/desk.vue'
 
 export default {
   mixins:[utils],
   components: {
     Group,
     Cell,
-    Swiper
+    Swiper,
+    desk
   },
   data () {
     return {
@@ -38,7 +46,8 @@ export default {
     },
     loadShopInfo(){
       this.shopInfo={address:'xxx xxx xxx xxx',longitude:'121.5273285',latitude:'31.21515044',detailDescription:'',
-      imgs:['uploads/product/328716.jpg','uploads/product/328716.jpg','uploads/product/328716.jpg']
+      // imgs:['uploads/product/328716.jpg','uploads/product/328716.jpg','uploads/product/328716.jpg'],
+       desks:[{},{},{},{},{},{},{},{},{}]
        }
     }
   },
