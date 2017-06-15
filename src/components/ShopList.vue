@@ -2,7 +2,7 @@
   <div>
     <div class="vux-demo">
       <img class="logo" src="../assets/vux_logo.png">
-      <h1> </h1>
+      <h1>{{this.$store.state.bn.openId}}</h1>
     </div>
     <group title="cell demo">
       <cell title="Vux" :value="item.dist" :link="{path:'/shop/'+item.shopId}" v-for="item in shops">
@@ -35,15 +35,23 @@ export default {
   },
   methods:{
     init(){
+      this.$store.commit("updateOpenId",{openId:this.$route.params.openId})
       this.loadShops();
     },
     loadShops(){
-      this.shops=[{shopId:'1',name:'ac',imgUrl:'',description:'111 222 333',dist:'100m'},
-      {shopId:'2',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
-      {shopId:'3',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
-      {shopId:'1',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
-      {shopId:'1',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
-      {shopId:'1',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},]
+      var url='http://localhost:50861/zy/shops'
+      var data={condition:{}};
+      var vm=this;
+      this.$http.post(url,data).then(res=>{
+        console.log(res)
+        this.shops=res.data;
+      });
+      // this.shops=[{shopId:'1',name:'ac',imgUrl:'',description:'111 222 333',dist:'100m'},
+      // {shopId:'2',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
+      // {shopId:'3',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
+      // {shopId:'1',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
+      // {shopId:'1',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},
+      // {shopId:'1',name:'abc',imgUrl:'uploads/product/328716.jpg',description:'111 222 333',dist:'100m'},]
     }
   }
 }

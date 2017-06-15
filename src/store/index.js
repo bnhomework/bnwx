@@ -8,11 +8,15 @@ const store = new Vuex.Store({
 
 store.registerModule('bn', {
   state: {
+    openId:'',
     isLoading: false,
     route:{},
     direction: 'forward'
   },
   mutations: {
+    updateOpenId (state, payload) {
+      state.openId = payload.openId
+    },
     updateLoadingStatus (state, payload) {
       state.isLoading = payload.isLoading
     },

@@ -2,19 +2,24 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Hello from '@/components/HelloFromVux'
 import store from '@/store'
+import config from '@/config'
 
 Vue.use(Router)
 
 const router = new Router({
   routes: [
     { path: '/', name: 'shopList', component: (resolve) => require(['@/components/ShopList.vue'], resolve),meta: { allowAnonymous: true, showTabbar:true,title:'主页'}},
+    { path: '/wx/:opendId', name: 'home', component: (resolve) => require(['@/components/ShopList.vue'], resolve),meta: { allowAnonymous: true, showTabbar:true,title:'主页'}},
     { path: '/shop/:id', name: 'shop', component: (resolve) => require(['@/components/Shop.vue'], resolve),meta: { allowAnonymous: true,title:'店铺'}},
     { path: '/shopOnMap/:longitude/:latitude', name: 'shopOnMap', component: (resolve) => require(['@/components/ShopOnMap.vue'], resolve),meta: { allowAnonymous: true,title:'地图'}},
     { path: '/orders', name: 'orders', component: (resolve) => require(['@/components/Orders.vue'], resolve),meta: { allowAnonymous: true, showTabbar:true,title:'订单'}}
   ]
 })
 
-
+const wxConfig=function(){
+  // var c=config.wx.config;
+  // Vue.wechat.config(c);
+}
 const history = window.sessionStorage
 history.clear()
 let historyCount = history.getItem('count') * 1 || 0
